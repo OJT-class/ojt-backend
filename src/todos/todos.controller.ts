@@ -20,7 +20,7 @@ export class TodosController {
 
   @Get(':id')
   findOne(@Param('id') id): Promise<Todo> {
-    return this.todosService.findOne(+id);
+    return this.todosService.findOne(id);
   }
 
   @Patch(':id')
