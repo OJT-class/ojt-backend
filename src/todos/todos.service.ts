@@ -9,8 +9,9 @@ import { Todo } from './interfaces/todo.interface';
 export class TodosService {
   constructor(@InjectModel('Todo') private readonly todoModel: Model<Todo>) {}
 
-  create(createTodoDto: CreateTodoDto) {
-    return 'This action adds a new todo';
+  async create(createTodoDto: CreateTodoDto): Promise<Todo> {
+    const newTodo = new this.todoModel(createTodoDto)
+    return await newTodo.save();
   }
 
   async findAll(): Promise<Todo[]> {
