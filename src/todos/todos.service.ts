@@ -18,7 +18,7 @@ export class TodosService {
     return await this.todoModel.find();
   }
 
-  async findOne(id: number): Promise<Todo> {
+  async findOne(id: string): Promise<Todo> {
     return await this.todoModel.findOne({_id: id});
   }
 
@@ -26,7 +26,7 @@ export class TodosService {
     return `This action updates a #${id} todo`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} todo`;
+  async remove(id: string): Promise<Todo> {
+    return await this.todoModel.findByIdAndRemove(id);
   }
 }

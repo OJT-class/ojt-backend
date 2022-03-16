@@ -29,7 +29,7 @@ export class TodosController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.todosService.remove(+id);
+  remove(@Param('id') id: string): Promise<Todo> {
+    return this.todosService.remove(id);
   }
 }
