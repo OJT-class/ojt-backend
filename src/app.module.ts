@@ -5,10 +5,11 @@ import { AppService } from './app.service';
 import { TodosModule } from './todos/todos.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 import config from "./config/keys"
 
 @Module({
-  imports: [TodosModule, MongooseModule.forRoot(config.mongoURI), UserModule, AuthModule],
+  imports: [ConfigModule.forRoot({isGlobal: true,}),TodosModule, MongooseModule.forRoot(process.env.MONGO_URI), UserModule, AuthModule, ConfigModule],
   controllers: [AppController],
   providers: [AppService],
 })
