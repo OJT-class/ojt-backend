@@ -1,35 +1,35 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { TodosService } from './todos.service';
+import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { Todo } from './interfaces/todo.interface';
 // import { UpdateTodoDto } from './dto/update-todo.dto';
 
 @Controller('todos')
 export class TodosController {
-  constructor(private readonly todosService: TodosService) {}
+  constructor(private readonly todoService: TodoService) {}
 
   @Post()
   create(@Body() createTodoDto: CreateTodoDto): Promise<Todo> {
-    return this.todosService.create(createTodoDto);
+    return this.todoService.create(createTodoDto);
   }
 
   @Get()
   findAll(): Promise<Todo[]> {
-    return this.todosService.findAll();
+    return this.todoService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id): Promise<Todo> {
-    return this.todosService.findOne(id);
+  findOne(@Param('id') id:string): Promise<Todo> {
+    return this.todoService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateTodoDto: CreateTodoDto): Promise<Todo>  {
-    return this.todosService.update(id, updateTodoDto);
+    return this.todoService.update(id, updateTodoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string): Promise<Todo> {
-    return this.todosService.remove(id);
+    return this.todoService.remove(id);
   }
 }
