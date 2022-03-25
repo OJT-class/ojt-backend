@@ -28,7 +28,7 @@ export class UserService {
     const { email, password } = UserDTO;
     const user = await this.userModel.findOne({ email });
     if (!user) {
-      throw new HttpException('user doesnt exists', HttpStatus.BAD_REQUEST);
+      throw new HttpException('user does not exists, pls register first', HttpStatus.BAD_REQUEST);
     }
     if (await bcrypt.compare(password, user.password)) {
       return this.cleanUser(user);
