@@ -1,12 +1,12 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
-import { Todo } from './interfaces/todo.interface';
+import { Todo } from './dto/todo.dto';
 // import { UpdateTodoDto } from './dto/update-todo.dto';
 
 @Controller('todos')
 export class TodosController {
-  constructor(private readonly todoService: TodoService) {}
+  constructor(private  todoService: TodoService) {}
 
   @Post()
   create(@Body() createTodoDto: CreateTodoDto): Promise<Todo> {

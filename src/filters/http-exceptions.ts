@@ -13,7 +13,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       response = ctx.getResponse(),
       statusCode = exception.getStatus();
 
-    return response.statusCode(statusCode).json({
+    return response.status(statusCode).json({
       status: statusCode,
       createBy: 'HttpExceptionFilter',
       message: exception?.['response'],

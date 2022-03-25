@@ -12,8 +12,8 @@ export class UserService {
   constructor(@InjectModel('User') private userModel: Model<User>) {}
 
   // create user route
-  async create(RegisterDTO: RegisterDTO) {
-    const { email } = RegisterDTO; // destructuring
+  async createNewUser(RegisterDTO: RegisterDTO) {
+    const { email } = RegisterDTO;
     const user = await this.userModel.findOne({ email });
     if (user) {
       throw new HttpException('user already exists', HttpStatus.BAD_REQUEST); // return 404
@@ -24,17 +24,15 @@ export class UserService {
     return this.cleanUser(createdUser);
   }
 
-  async findByLogin(UserDTO: LoginDTO) {
+  async login(UserDTO: LoginDTO) {
     const { email, password } = UserDTO;
     const user = await this.userModel.findOne({ email });
     if (!user) {
-      throw new HttpException('user doesnt exists', HttpStatus.BAD_REQUEST);
+      throw new HttpException("user doesn't exists", HttpStatus.BAD_REQUEST);
     }
-    if (await bcrypt.compare(password, user.password)) {
-      return this.cleanUser(user);
-    } else {
+    if (!(await bcrypt.compare(password, user.password)))
       throw new HttpException('invalid credential', HttpStatus.BAD_REQUEST);
-    }
+    return this.cleanUser(user);
   }
 
   // clean password from user obj

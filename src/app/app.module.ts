@@ -6,12 +6,13 @@ import { TodosModule } from '../todos/todos.module';
 import { UserModule } from '../user/user.module';
 import { AuthModule } from '../auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import keys from 'src/config/keys';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     TodosModule,
-    MongooseModule.forRoot(process.env.MONGO_URI),
+    MongooseModule.forRoot(keys.MONGO_URI),
     UserModule,
     AuthModule,
     ConfigModule,
@@ -20,3 +21,4 @@ import { ConfigModule } from '@nestjs/config';
   providers: [AppService],
 })
 export class AppModule {}
+

@@ -2,12 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateTodoDto } from './dto/create-todo.dto';
-// import { UpdateTodoDto } from './dto/update-todo.dto';
-import { Todo } from './interfaces/todo.interface';
+
+import { Todo } from './dto/todo.dto';
 
 @Injectable()
 export class TodoService {
-  constructor(@InjectModel('Todo') private readonly todoModel: Model<Todo>) {}
+  constructor(@InjectModel('Todo') private  todoModel: Model<Todo>) {}
 
   async create(createTodoDto: CreateTodoDto): Promise<Todo> {
     const newTodo = new this.todoModel(createTodoDto);

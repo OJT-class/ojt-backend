@@ -9,7 +9,7 @@ async function bootstrap() {
     // handel with http Exceptions
     new HttpExceptionFilter()
 
-  )
+  ),
   await app.listen(8080);
 }
 bootstrap();
