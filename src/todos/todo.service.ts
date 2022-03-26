@@ -9,10 +9,10 @@ import { Todo } from './dto/todo.dto';
 export class TodoService {
   constructor(@InjectModel('Todo') private  todoModel: Model<Todo>) {}
 
-  async create(createTodoDto: CreateTodoDto): Promise<Todo> {
+  async createNewToDo(createTodoDto: CreateTodoDto): Promise<Todo> {
     const newTodo = new this.todoModel(createTodoDto);
     return await newTodo.save();
-  }
+  } 
 
   async findAll(): Promise<Todo[]> {
     return await this.todoModel.find({});

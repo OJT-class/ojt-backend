@@ -5,5 +5,5 @@ export const TodoSchema = new mongoose.Schema({
     description: String,
     color: String,
     isImportant: Boolean,
-    todoReference:[{type: String,ref:"users"}]
+    userTodoRef:{type: String,ref:"users"}
 })

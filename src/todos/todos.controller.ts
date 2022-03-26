@@ -8,9 +8,9 @@ import { Todo } from './dto/todo.dto';
 export class TodosController {
   constructor(private  todoService: TodoService) {}
 
-  @Post()
+  @Post('/create-todo')
   create(@Body() createTodoDto: CreateTodoDto): Promise<Todo> {
-    return this.todoService.create(createTodoDto);
+    return this.todoService.createNewToDo(createTodoDto);
   }
 
   @Get()
