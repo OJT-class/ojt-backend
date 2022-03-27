@@ -3,9 +3,9 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User } from './interfaces/user';
 import { Model } from 'mongoose';
 import { RegisterDTO } from './dto/register.dto';
+import { LoginDTO } from 'src/auth/dto/login.dto';
 import { Payload } from './interfaces/payload';
 import * as bcrypt from 'bcrypt';
-import { LoginDTO } from 'src/auth/dto/login.dto';
 
 @Injectable()
 export class UserService {
@@ -41,6 +41,7 @@ export class UserService {
   cleanUser(user: User) {
     const sanitizedUser = user.toObject();
     delete sanitizedUser['password'];
+    // console.log("🚀 ~ file: user.service.ts ~ line 46 ~ UserService ~ cleanUser ~ sanitizedUser", sanitizedUser)
     return sanitizedUser;
   }
 

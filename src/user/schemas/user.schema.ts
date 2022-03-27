@@ -4,6 +4,7 @@ import * as bcrypt from 'bcrypt';
 // the email will be unique in the db
 export const UserSchema = new mongoose.Schema({
   email: { type: String, unique: true, required: true },
+  username: { type: String, required: true },
   password: { type: String, required: true },
 });
 
