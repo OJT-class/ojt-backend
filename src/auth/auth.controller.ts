@@ -21,6 +21,7 @@ export class AuthController {
 
   @Post('register')
   async register(@Body() RegisterDTO: RegisterDTO) {
+    console.log(RegisterDTO)
     const user = await this.userService.create(RegisterDTO);
     const payload = {
       email: user.email,
@@ -32,6 +33,7 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() UserDTO: LoginDTO) {
+    console.log(UserDTO)
     const user = await this.userService.findByLogin(UserDTO);
     const payload = {
       email: user.email,
