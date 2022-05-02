@@ -4,4 +4,5 @@ export interface Todo {
     description: string;
     color: string;
     isImportant: boolean
+    completed: boolean
 }

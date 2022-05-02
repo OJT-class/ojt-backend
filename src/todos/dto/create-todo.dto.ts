@@ -3,4 +3,5 @@ export class CreateTodoDto {
     readonly description: string;
     readonly color: string;
     readonly isImportant: boolean;
+    readonly completed: boolean;
 }

@@ -10,7 +10,9 @@ export class TodosService {
   constructor(@InjectModel('Todo') private readonly todoModel: Model<Todo>) {}
 
   async create(createTodoDto: CreateTodoDto): Promise<Todo> {
-    const newTodo = new this.todoModel(createTodoDto);
+    console.log("🚀 ~ file: todos.service.ts ~ line 13 ~ TodosService ~ create ~ createTodoDto", createTodoDto)
+    const todoWithCompleted = {...createTodoDto, completed: false}
+    const newTodo = new this.todoModel(todoWithCompleted);
     return await newTodo.save();
   }
 
